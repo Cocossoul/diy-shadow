@@ -1,0 +1,52 @@
+---
+- name: Install Etherwake for the Wake on LAN capabilities
+  become: true
+  ansible.builtin.apt:
+    name: etherwake
+
+- name: Install the Paho Python library
+  ansible.builtin.pip:
+    name: paho-mqtt
+
+- name: Install the waker python script
+  file:
+    src: waker.py
+    dest: /home/pi/waker.py
+    owner: pi
+    group: pi
+    mode: 0644
+
+- name: Install the waker bash script
+  template:
+    src: waker.sh
+    dest: /home/pi/waker.sh
+    owner: pi
+    group: pi
+    mode: 0755
+
+- name:
+  become: true
+  copy:
+    src: waker.service
+    dest: /etc/systemd/system/waker.service
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Install the waker systemd service
+  become: true
+  copy:
+    src: waker.service
+    dest: /etc/systemd/system/waker.service
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Restart the waker systemd service
+  become: true
+  ansible.builtin.systemd:
+    name: waker.service
+    state: restarted
+    daemon_reload: yes
+    enabled: true
+    masked: no

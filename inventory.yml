@@ -1,0 +1,7 @@
+machines:
+  hosts:
+    raspi:
+      ansible_host: broker.corentinpape.com
+      ansible_port: 1882
+  vars:
+    ansible_user: pi
