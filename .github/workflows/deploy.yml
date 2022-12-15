@@ -1,0 +1,26 @@
+name: Deploy Waker using Ansible
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: deploy
+    runs-on: cocopaps/ansible-ci:latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install requirements
+        run: |
+          ansible-galaxy install -r requirements.yml
+      - name: Check Ansible syntax
+        run: |
+          ansible-playbook playbook.yml --syntax-check
+      - name: Deploy
+        env:
+          ANSIBLE_HOST_KEY_CHECKING: 'false'
+          ANSIBLE_FORCE_COLOR: 'true'
+          ANSIBLE_PYTHON_INTERPRETER: /usr/bin/python3
+        run: |
+          ansible-playbook -v -i inventory.yml playbook.yml
