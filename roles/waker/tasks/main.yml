@@ -9,7 +9,7 @@
     name: paho-mqtt
 
 - name: Install the waker python script
-  file:
+  copy:
     src: waker.py
     dest: /home/pi/waker.py
     owner: pi
