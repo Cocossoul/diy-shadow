@@ -8,7 +8,8 @@ on:
 jobs:
   deploy:
     name: deploy
-    runs-on: cocopaps/ansible-ci:latest
+    runs-on: ubuntu-latest
+    container: cocopaps/ansible-ci:latest
     steps:
       - uses: actions/checkout@v2
       - name: Deploy with Ansible playbook
