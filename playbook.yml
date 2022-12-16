@@ -1,32 +1,15 @@
-- name: Check connection
-  hosts: all
-  tasks:
-    - name: Ping my hosts
-      ansible.builtin.ping:
-    - name: Print message
-      ansible.builtin.debug:
-        msg: Hello world
-- name: Harden ssh connection
+- name: Deploy Waker on Raspi
   hosts: all
   collections:
     - devsec.hardening
   roles:
     - ssh_hardening
+    - core
+    - mosquitto
+    - waker
   vars:
     ssh_pam_support: false
     ssh_use_pam: false
     ssh_kerberos_support: false
     ssh_server_password_login: false
     sshd_authenticationmethods: publickey
-- name: Setup core features like auto-update
-  hosts: all
-  roles:
-     - core
-- name: Install Mosquitto MQTT Broker
-  hosts: all
-  roles:
-    - mosquitto
-- name: Install script and its dependencies, then configure systemd to auto start it
-  hosts: all
-  roles:
-    - waker
