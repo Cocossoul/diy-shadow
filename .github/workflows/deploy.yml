@@ -25,7 +25,6 @@ jobs:
           playbook: playbook.yml
           directory: ./
           key: ${{secrets.SSH_PRIVATE_KEY}}
-          known_hosts: .known_hosts
           requirements: requirements.yml
           options: |
             --inventory inventory.yml
