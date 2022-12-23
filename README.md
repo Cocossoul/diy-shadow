@@ -15,6 +15,10 @@ The Raspberry Pi listens on a MQTT queue (or other messaging services like Rabbi
 
 The MQTT queue can be hosted on the Raspi itself if you can open your ports (and don't mind), like I did here.
 
+Once everything in place, you can use the `client.py` script to power on the computer from another computer.
+There are Android apps that can send a message to a MQTT queue to power on the computer from your phone.
+The MQTT topic is `wol/mqtt` and the message is `wake up`.
+
 This Ansible playbook deploys the above solution.
 
 ## Requirements
