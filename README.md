@@ -5,7 +5,7 @@ My Raspi installation at home which can power on my gamer PC upon receiving a sp
 ## Use case
 
 To power on their computer without touching to the physical power button, one can use the Wake on LAN capability of their computer's network card.
-In short, you can configure your computer to power on upon receiving a specific packet on the port 9 of their ethernet interface. The packet mostly contains the target computer mac address.
+In short, you can configure your computer to power on upon receiving a specific packet on the port 9 of its ethernet interface. The packet mostly contains the target computer mac address.
 
 In my case, I could not connect my computer to the box using an ethernet cable, but I really wanted to be able to power it on from afar.
 
